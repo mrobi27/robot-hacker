@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robot Hacker Logo Animasi</title>
+    <title>Robot Hacker Logo Statis</title>
     <!-- Memuat Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -20,35 +20,14 @@
             padding: 20px;
         }
 
-        /* --- Animasi CSS untuk Efek Hacker --- */
-        @keyframes scan {
-            0% { transform: translateX(-100%); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(100%); opacity: 0; }
+        /* Efek Glow Statis pada SVG */
+        .static-glow {
+            /* Meniru efek pulse-glow menggunakan filter drop-shadow */
+            filter: drop-shadow(0 0 8px #00ff66) drop-shadow(0 0 16px #00ff66);
         }
 
-        @keyframes pulse-glow {
-            0%, 100% { filter: drop-shadow(0 0 5px #00ff66) drop-shadow(0 0 10px #00ff66); }
-            50% { filter: drop-shadow(0 0 10px #00ff66) drop-shadow(0 0 20px #00ff66); }
-        }
-
-        @keyframes code-flow {
-            from { stroke-dashoffset: 0; }
-            to { stroke-dashoffset: 100; }
-        }
-
-        .scanner-line {
-            animation: scan 3s infinite linear;
-            transform-origin: center;
-        }
-
-        .neon-glow {
-            animation: pulse-glow 2s infinite ease-in-out;
-        }
-
-        .flowing-code {
-            stroke-dasharray: 50;
-            animation: code-flow 8s infinite linear;
+        .static-glow-blue {
+            filter: drop-shadow(0 0 8px #00BFFF) drop-shadow(0 0 16px #00BFFF);
         }
 
     </style>
@@ -57,17 +36,18 @@
 
     <div class="bg-[#161b22] p-8 md:p-12 rounded-xl shadow-2xl border border-[#30363d] max-w-lg w-full text-center">
         
-        <h1 class="text-xl md:text-2xl font-bold mb-4 text-[#00BFFF] tracking-wider" style="text-shadow: 0 0 5px #00BFFF;">
-            CYBER-MIND CORE
+        <h1 class="text-xl md:text-2xl font-bold mb-4 text-[#00BFFF] tracking-wider static-glow-blue" style="text-shadow: 0 0 5px #00BFFF;">
+            STATIC HACKER BOT ASSET
         </h1>
 
         <!-- Container untuk SVG Robot -->
         <div class="mx-auto w-full max-w-xs md:max-w-sm">
             
+            <!-- SVG ini TIDAK mengandung kode CSS Animation, sehingga aman untuk GitHub README -->
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
                 
                 <!-- Lingkaran Luar (Data Ring) - Biru Cyber -->
-                <circle cx="100" cy="100" r="95" fill="none" stroke="#00BFFF" stroke-width="2" opacity="0.4"/>
+                <circle cx="100" cy="100" r="95" fill="none" stroke="#00BFFF" stroke-width="2" opacity="0.4" class="static-glow-blue"/>
                 
                 <!-- Kepala Robot Utama (Baja Gelap) -->
                 <rect x="50" y="50" width="100" height="100" rx="10" ry="10" fill="#2d3748" stroke="#4a5568" stroke-width="3"/>
@@ -83,45 +63,30 @@
                 <rect x="132" y="88" width="8" height="25" rx="2" fill="#3b465a"/>
                 <rect x="120" y="88" width="8" height="25" rx="2" fill="#3b465a"/>
 
-                <!-- Lampu Mata Utama (Neon Green) -->
-                <g class="neon-glow">
+                <!-- Lampu Mata Utama (Neon Green) - Menggunakan Glow Statis -->
+                <g class="static-glow">
                     <rect x="65" y="65" width="20" height="10" fill="#00ff66" rx="2"/>
                     <rect x="115" y="65" width="20" height="10" fill="#00ff66" rx="2"/>
                 </g>
 
                 <!-- Antena/Sinyal di Atas Kepala -->
                 <rect x="95" y="40" width="10" height="15" fill="#4a5568"/>
-                <circle cx="100" cy="40" r="5" fill="#00BFFF" class="neon-glow"/>
+                <circle cx="100" cy="40" r="5" fill="#00BFFF" class="static-glow-blue"/>
                 
                 <!-- Mulut (Tampilan Data) -->
                 <g clip-path="url(#mouth-clip)">
                     <rect x="60" y="125" width="80" height="15" fill="#1f2937"/>
-                    <!-- Efek Kode Mengalir (Neon Green) -->
-                    <path d="M 60 132 L 140 132" stroke="#00ff66" stroke-width="1.5" stroke-linecap="round" class="flowing-code"/>
-                    <path d="M 60 138 L 140 138" stroke="#00ff66" stroke-width="1.5" stroke-linecap="round" class="flowing-code" style="animation-delay: -4s;"/>
+                    <!-- Efek Kode Statis (Neon Green) -->
+                    <line x1="60" y1="132" x2="140" y2="132" stroke="#00ff66" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="60" y1="138" x2="140" y2="138" stroke="#00ff66" stroke-width="1.5" stroke-linecap="round"/>
                 </g>
                 <clipPath id="mouth-clip">
                     <rect x="60" y="125" width="80" height="15"/>
                 </clipPath>
 
-                <!-- Efek Pemindaian (Scanner) di Depan Mata -->
-                <g clip-path="url(#scanner-clip)">
-                    <rect x="50" y="50" width="100" height="50" fill="none"/>
-                    <rect x="50" y="50" width="100" height="50" fill="url(#scanner-gradient)" class="scanner-line"/>
-                </g>
-
-                <defs>
-                    <!-- Gradient untuk efek scanner -->
-                    <linearGradient id="scanner-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color:#00ff66;stop-opacity:0"/>
-                        <stop offset="50%" style="stop-color:#00ff66;stop-opacity:0.8"/>
-                        <stop offset="100%" style="stop-color:#00ff66;stop-opacity:0"/>
-                    </linearGradient>
-                    <!-- Clip path agar scanner hanya di area wajah -->
-                    <clipPath id="scanner-clip">
-                        <rect x="50" y="50" width="100" height="50"/>
-                    </clipPath>
-                </defs>
+                <!-- Efek Pemindaian (Scanner) Statis di Depan Mata (Garis Sinyal) -->
+                <line x1="50" y1="55" x2="150" y2="55" stroke="#00ff66" stroke-width="2" opacity="0.6"/>
+                <line x1="50" y1="55" x2="150" y2="55" stroke="#00ff66" stroke-width="1" class="static-glow" stroke-linecap="round"/>
 
             </svg>
     </div>
