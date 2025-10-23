@@ -29,7 +29,7 @@
             </feMerge>
         </filter>
 
-        <!-- Filter Glow untuk Mata dan Hujan (Electric Blue) -->
+        <!-- Filter Glow untuk Mata (Electric Blue) -->
         <filter id="blueGlow" x="-50%" y="-50%" width="200%" height="200%">
             <feFlood flood-color="#00FFFF" result="floodColor" /> 
             <feComposite in="floodColor" in2="SourceGraphic" operator="in" result="coloredBlur" />
@@ -58,11 +58,6 @@
     
     <!-- Latar Belakang Hitam Penuh -->
     <rect x="0" y="0" width="200" height="200" fill="#000000" />
-
-    <!-- Lingkaran Luar (Data Ring) - Electric Cyan (GLOW) -->
-    <circle cx="100" cy="100" r="95" fill="none" stroke="#00FFFF" stroke-width="2" opacity="0.4" filter="url(#blueGlow)">
-        <animate attributeName="opacity" values="0.4; 0.6; 0.4" dur="4s" repeatCount="indefinite"/>
-    </circle>
     
     <!-- Group Kepala Robot dengan Pivot di Tengah -->
     <g transform-origin="100 100">
@@ -133,13 +128,37 @@
         </g>
     </g>
     
-    <!-- LAYER HUJAN/RAIN (Electric Cyan) - GLOW -->
-    <g id="rain-layer" stroke="#00FFFF" stroke-width="1" opacity="0.4" filter="url(#blueGlow)" stroke-linecap="round">
-        <line x1="30" y1="-10" x2="30" y2="10"><animate attributeName="y1" values="-10; 200" dur="2s" repeatCount="indefinite"/><animate attributeName="y2" values="10; 220" dur="2s" repeatCount="indefinite"/></line>
-        <line x1="80" y1="-50" x2="80" y2="-30"><animate attributeName="y1" values="-50; 200" dur="2.5s" repeatCount="indefinite"/><animate attributeName="y2" values="-30; 220" dur="2.5s" repeatCount="indefinite"/></line>
-        <line x1="150" y1="-100" x2="150" y2="-80"><animate attributeName="y1" values="-100; 200" dur="1.8s" repeatCount="indefinite"/><animate attributeName="y2" values="-80; 220" dur="1.8s" repeatCount="indefinite"/></line>
-        <line x1="180" y1="0" x2="180" y2="20"><animate attributeName="y1" values="0; 200" dur="2.2s" repeatCount="indefinite"/><animate attributeName="y2" values="20; 220" dur="2.2s" repeatCount="indefinite"/></line>
-        <line x1="50" y1="-70" x2="50" y2="-50"><animate attributeName="y1" values="-70; 200" dur="3s" repeatCount="indefinite"/><animate attributeName="y2" values="-50; 220" dur="3s" repeatCount="indefinite"/></line>
+    <!-- LAYER HUJAN BINER (Electric Cyan) - GLOW -->
+    <g id="binary-rain-layer" fill="#00FFFF" filter="url(#blueGlow)" font-family="monospace" font-size="10">
+        
+        <!-- Stream 1 (Lebih Lambat dan Panjang) -->
+        <text x="60" y="70" opacity="0.8">0</text>
+        <text x="60" y="80" opacity="0.8">1</text>
+        <text x="60" y="90" opacity="0.8">0</text>
+        <text x="60" y="100" opacity="0.8">1</text>
+        <text x="60" y="110" opacity="0.8">0</text>
+        <animate attributeName="y" begin="0s" dur="4s" values="50; 250" repeatCount="indefinite" additive="sum"/>
+        <animate attributeName="opacity" begin="0s" dur="4s" values="0.8; 0" repeatCount="indefinite"/>
+
+        <!-- Stream 2 (Ukuran Font Lebih Kecil, Posisi Tengah) -->
+        <g font-size="8">
+            <text x="100" y="10" opacity="0.8">1</text>
+            <text x="100" y="20" opacity="0.8">0</text>
+            <text x="100" y="30" opacity="0.8">1</text>
+            <text x="100" y="40" opacity="0.8">0</text>
+            <text x="100" y="50" opacity="0.8">1</text>
+            <animate attributeName="y" begin="1.5s" dur="3s" values="0; 200" repeatCount="indefinite" additive="sum"/>
+            <animate attributeName="opacity" begin="1.5s" dur="3s" values="0.8; 0" repeatCount="indefinite"/>
+        </g>
+
+        <!-- Stream 3 (Ukuran Font Sedang, Posisi Kanan) -->
+        <text x="140" y="0" opacity="0.8">0</text>
+        <text x="140" y="10" opacity="0.8">1</text>
+        <text x="140" y="20" opacity="0.8">0</text>
+        <text x="140" y="30" opacity="0.8">1</text>
+        <text x="140" y="40" opacity="0.8">0</text>
+        <animate attributeName="y" begin="0.8s" dur="3.5s" values="0; 200" repeatCount="indefinite" additive="sum"/>
+        <animate attributeName="opacity" begin="0.8s" dur="3.5s" values="0.8; 0" repeatCount="indefinite"/>
     </g>
 
 </svg>
