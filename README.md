@@ -1,34 +1,14 @@
-# 🤖 Robot Hacker — Cyber-Mind Core  
+<div align="center">
 
-![Robot Hacker Logo](https://raw.githubusercontent.com/mrobi27/robot-hacker/main/preview.png)
+# 🤖 CYBER-MIND CORE
 
-> “SYSTEM ONLINE — Neon intelligence activated.”
+<img src="https://raw.githubusercontent.com/mrobi27/robot-hacker/main/robot.svg" width="360" alt="Robot Hacker Logo">
 
-🚀 **Live Demo:**  
-👉 [https://mrobi27.github.io/robot-hacker/](https://mrobi27.github.io/robot-hacker/)
-
----
-
-### 🧠 Tentang Proyek  
-Proyek ini menampilkan **animasi robot AI dengan efek neon hijau** yang sepenuhnya dibuat menggunakan **HTML + CSS + SVG**.  
-Semua elemen visual berbasis kode, tidak menggunakan gambar bitmap — jadi tampilannya tajam di semua resolusi layar.
+> _“SYSTEM ONLINE — Neon intelligence activated.”_
 
 ---
 
-### ⚙️ Teknologi
-- **TailwindCSS CDN**
-- **SVG Animation (stroke, neon glow, scanning)**
-- **Custom CSS Hacker Theme**
-- **GitHub Pages Deployment**
+🚀 **Live demo:**  
+👉 https://mrobi27.github.io/robot-hacker/
 
----
-
-### 🪄 Preview Screenshot  
-> Tampilan di browser  
-![Preview](https://raw.githubusercontent.com/mrobi27/robot-hacker/main/screenshot.png)
-
----
-
-### 📡 Deploy otomatis via GitHub Pages
-Repositori ini di-host langsung di GitHub Pages untuk menampilkan demo interaktif.
-
+</div>
