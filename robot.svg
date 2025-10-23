@@ -1,0 +1,145 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    
+    <defs>
+        
+        <!-- GRADIENT UNTUK EFEK 3D LEMBUT PADA KEPALA (LIGHT PURPLE/PINK) -->
+        <radialGradient id="softHeadGradient" cx="50%" cy="50%" r="50%" fx="60%" fy="30%">
+            <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1"/>
+            <stop offset="60%" style="stop-color:#F5E0F5;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#D8B0D8;stop-opacity:1"/>
+        </radialGradient>
+
+        <!-- GRADIENT UNTUK INSET MATA (DARK PURPLE/NAVY) -->
+        <linearGradient id="eyeInsetGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#504070"/>
+            <stop offset="100%" style="stop-color:#302050"/>
+        </linearGradient>
+
+        <!-- Filter untuk Drop Shadow Lembut (Meniru 3D) -->
+        <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feOffset result="offOut" in="SourceAlpha" dx="0" dy="8" />
+            <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5" />
+            <feFlood flood-color="#000000" flood-opacity="0.3"/>
+            <feComposite operator="in" in2="blurOut"/>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <!-- Filter Glow untuk Mata dan Hujan (Electric Blue) -->
+        <filter id="blueGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feFlood flood-color="#00FFFF" result="floodColor" /> 
+            <feComposite in="floodColor" in2="SourceGraphic" operator="in" result="coloredBlur" />
+            <feGaussianBlur in="coloredBlur" stdDeviation="1.5" result="blur1"/>
+            <feMerge>
+                <feMergeNode in="blur1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        
+        <!-- Filter Glow untuk Scanner (Neon Pink) -->
+        <filter id="pinkGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feFlood flood-color="#FF33CC" result="floodColor" /> 
+            <feComposite in="floodColor" in2="SourceGraphic" operator="in" result="coloredBlur" />
+            <feGaussianBlur in="coloredBlur" stdDeviation="2" result="blur1"/>
+            <feMerge>
+                <feMergeNode in="blur1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+
+        <clipPath id="head-clip-soft">
+            <rect x="50" y="50" width="100" height="100" rx="25" ry="25"/>
+        </clipPath>
+    </defs>
+    
+    <!-- Latar Belakang Hitam Penuh -->
+    <rect x="0" y="0" width="200" height="200" fill="#000000" />
+
+    <!-- Lingkaran Luar (Data Ring) - Electric Cyan (GLOW) -->
+    <circle cx="100" cy="100" r="95" fill="none" stroke="#00FFFF" stroke-width="2" opacity="0.4" filter="url(#blueGlow)">
+        <animate attributeName="opacity" values="0.4; 0.6; 0.4" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Group Kepala Robot dengan Pivot di Tengah -->
+    <g transform-origin="100 100">
+        <!-- Animasi Miring (Mengangguk Sedih) -->
+        <animateTransform 
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            values="0 100 100; -1 100 100; 0 100 100; 1 100 100; 0 100 100"
+            dur="10s" 
+            repeatCount="indefinite"
+        />
+
+        <!-- Bentuk Kepala Robot Utama (Rounded Square) dengan Gradien 3D -->
+        <rect x="50" y="50" width="100" height="100" rx="25" ry="25" 
+              fill="url(#softHeadGradient)" filter="url(#softShadow)" stroke="#C0C0C0" stroke-width="1"/>
+        
+        <!-- Elemen Kuning di Atas Kepala (Yellow/Gold Bar) -->
+        <rect x="80" y="40" width="40" height="10" rx="5" ry="5" fill="#FFD700" stroke="#CCAA00" stroke-width="1"/>
+
+        <!-- Antena Kiri (Pink Neon) -->
+        <g transform="translate(45, 65)">
+             <line x1="0" y1="0" x2="0" y2="-15" stroke="#FF33CC" stroke-width="5" stroke-linecap="round"/>
+             <circle cx="0" cy="-15" r="5" fill="#FF33CC"/>
+        </g>
+        
+        <!-- Antena Kanan (Pink Neon) -->
+        <g transform="translate(155, 65)">
+             <line x1="0" y1="0" x2="0" y2="-15" stroke="#FF33CC" stroke-width="5" stroke-linecap="round"/>
+             <circle cx="0" cy="-15" r="5" fill="#FF33CC"/>
+        </g>
+
+        <!-- Area Inset Mata (Dark Purple Inset) -->
+        <rect x="65" y="70" width="70" height="30" rx="10" ry="10" fill="url(#eyeInsetGradient)" stroke="#201040" stroke-width="1"/>
+
+        <!-- Mata Utama (Oval/Capsule) dan Animasi Berkedip - Electric Blue (GLOW) -->
+        <g id="eyes-group" transform-origin="100 85">
+            <!-- Animasi Berkedip (Blinking) -->
+            <animateTransform 
+                attributeName="transform"
+                attributeType="XML"
+                type="scale"
+                values="1 1; 1 0.1; 1 1"
+                keyTimes="0; 0.05; 1" 
+                dur="4s" 
+                repeatCount="indefinite"
+            />
+            <g fill="#00FFFF" filter="url(#blueGlow)">
+                <!-- Mata Kiri (Oval) -->
+                <ellipse cx="85" cy="85" rx="8" ry="12"/>
+                <!-- Mata Kanan (Oval) -->
+                <ellipse cx="115" cy="85" rx="8" ry="12"/>
+            </g>
+        </g>
+
+        <!-- Mulut (Oval/Capsule Cemberut) - Meniru bentuk referensi -->
+        <rect x="90" y="120" width="20" height="8" rx="4" ry="4" fill="#201A30" stroke="#00FFFF" stroke-width="1">
+            <!-- Animasi gerakan mulut halus (sedih) -->
+            <animate attributeName="ry" values="4; 1; 4" dur="3s" repeatCount="indefinite"/>
+        </rect>
+        
+        <!-- Efek Pemindaian (Scanner) - Neon Pink (GLOW) -->
+        <g clip-path="url(#head-clip-soft)" filter="url(#pinkGlow)">
+            <rect x="50" y="50" width="100" height="3" fill="#FF33CC" opacity="0.3">
+                <!-- Animasi gerakan garis dari atas ke bawah -->
+                <animate attributeName="y" values="50; 150; 50" dur="6s" repeatCount="indefinite"/>
+            </rect>
+        </g>
+    </g>
+    
+    <!-- LAYER HUJAN/RAIN (Electric Cyan) - GLOW -->
+    <g id="rain-layer" stroke="#00FFFF" stroke-width="1" opacity="0.4" filter="url(#blueGlow)" stroke-linecap="round">
+        <line x1="30" y1="-10" x2="30" y2="10"><animate attributeName="y1" values="-10; 200" dur="2s" repeatCount="indefinite"/><animate attributeName="y2" values="10; 220" dur="2s" repeatCount="indefinite"/></line>
+        <line x1="80" y1="-50" x2="80" y2="-30"><animate attributeName="y1" values="-50; 200" dur="2.5s" repeatCount="indefinite"/><animate attributeName="y2" values="-30; 220" dur="2.5s" repeatCount="indefinite"/></line>
+        <line x1="150" y1="-100" x2="150" y2="-80"><animate attributeName="y1" values="-100; 200" dur="1.8s" repeatCount="indefinite"/><animate attributeName="y2" values="-80; 220" dur="1.8s" repeatCount="indefinite"/></line>
+        <line x1="180" y1="0" x2="180" y2="20"><animate attributeName="y1" values="0; 200" dur="2.2s" repeatCount="indefinite"/><animate attributeName="y2" values="20; 220" dur="2.2s" repeatCount="indefinite"/></line>
+        <line x1="50" y1="-70" x2="50" y2="-50"><animate attributeName="y1" values="-70; 200" dur="3s" repeatCount="indefinite"/><animate attributeName="y2" values="-50; 220" dur="3s" repeatCount="indefinite"/></line>
+    </g>
+
+</svg>
